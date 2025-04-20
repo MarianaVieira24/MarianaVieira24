@@ -1,0 +1,4 @@
+print("4. Gestão de Pagamentos")
+# ...
+elif opcao == "4":
+    menu_pagamentos()
