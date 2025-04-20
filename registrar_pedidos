@@ -1,0 +1,30 @@
+def registrar_pedido():
+    numero = int(input("Número da mesa: "))
+    if numero not in mesas or mesas[numero]['status'] == 'livre':
+        print("Mesa inválida ou sem clientes.")
+        return
+
+    itens = []
+    while True:
+        listar_cardapio()
+        item = input("Digite o nome do prato (ou 'fim' para concluir): ")
+        if item == 'fim':
+            break
+        if item not in cardapio:
+            print("Item não encontrado no cardápio.")
+            continue
+        if not verificar_ingredientes(item):
+            print(f"Pedido de '{item}' cancelado por falta de ingredientes.")
+            continue
+        baixar_ingredientes(item)
+        itens.append(item)
+        print(f"'{item}' adicionado ao pedido e ingredientes baixados.")
+
+    if not itens:
+        print("Nenhum item válido no pedido.")
+        return
+
+    pedido = {'mesa': numero, 'itens': itens, 'status': 'recebido'}
+    pedidos.append(pedido)
+    mesas[numero]['pedidos'].append(pedido)
+    print("Pedido registrado com sucesso!")
