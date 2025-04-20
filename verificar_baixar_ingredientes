@@ -1,0 +1,19 @@
+def cadastrar_item_cardapio():
+    nome = input("Nome do prato: ")
+    descricao = input("Descrição: ")
+    preco = float(input("Preço: "))
+    ingredientes = {}
+
+    while True:
+        ing = input("Ingrediente (ou 'fim' para terminar): ")
+        if ing == 'fim':
+            break
+        qtd = float(input(f"Quantidade de '{ing}' necessária: "))
+        ingredientes[ing] = qtd
+
+    cardapio[nome] = {
+        'descricao': descricao,
+        'preco': preco,
+        'ingredientes': ingredientes  # agora é um dicionário!
+    }
+    print("Item adicionado ao cardápio!")
